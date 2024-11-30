@@ -24,6 +24,7 @@ import flixel.util.FlxColor;
 import flixel.tweens.*;
 import flixel.ui.FlxButton;
 import flixel.ui.FlxSpriteButton;
+import flixel.ui.FlxUISlider;
 
 import haxe.Json;
 import haxe.format.JsonParser;
