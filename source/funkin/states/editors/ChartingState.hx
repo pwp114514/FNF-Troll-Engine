@@ -1402,7 +1402,7 @@ class ChartingState extends MusicBeatState
 
 	var waveformTrackDropDown:FlxUIDropDownMenuCustom;
 	var waveformTrack:Null<FlxSound> = null;
-	var trackVolumeSlider:FlxUISlider;
+	var trackVolumeSlider:FlxUISlider = null;
 
 	function selectTrack(trackName:String){
 		waveformTrack = soundTracksMap.get(trackName); 
