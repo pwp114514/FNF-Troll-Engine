@@ -6,8 +6,8 @@ permissions:
   discussions: write
 
 env:
-  PROJECT_NAME: PsychEngine
-  REPO_PATH: MobilePorting/FNF-PsychEngine-Mobile
+  PROJECT_NAME: TrollEngine
+  REPO_PATH: pwp114514/FNF-Troll-Engine
 
 jobs:
   get-commit-hash:
