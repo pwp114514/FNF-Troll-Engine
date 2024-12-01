@@ -7,6 +7,7 @@ import openfl.media.Sound;
 import openfl.ui.MouseCursor;
 import openfl.ui.Mouse;
 import haxe.io.Path;
+import flixel.FlxG;
 
 #if HSCRIPT_ALLOWED
 import funkin.scripts.FunkinHScript;
