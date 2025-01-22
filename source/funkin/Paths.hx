@@ -131,6 +131,11 @@ class Paths
 		}
 		// run the garbage collector for good measure lmfao
 		openfl.system.System.gc();
+		#if cpp
+		cpp.NativeGc.run(true);
+		#elseif hl
+		hl.Gc.major();
+		#end
 	}
 
 	/** removeBitmap(FlxSprite.graphic.key); **/
@@ -151,6 +156,11 @@ class Paths
 
 		//trace('did not remove $key');
 		//return false;
+		#if cpp
+		cpp.NativeGc.run(true);
+		#elseif hl
+		hl.Gc.major();
+		#end
 	}
 
 	public static function clearStoredMemory()
@@ -176,16 +186,25 @@ class Paths
 
 		// flags everything to be cleared out next unused memory clear
 		localTrackedAssets.resize(0);
+		#if cpp
+		cpp.NativeGc.run(true);
+		#elseif hl
+		hl.Gc.major();
+		#end
 	}
 
-	public static function getPath(key:String, ignoreMods:Bool = false):String
+	public static function getPath(key:String, ignoreMods:Bool = false, ?library:Null<String> = null):String
 	{
+		if (library == "mobile")
+		return Paths.getPreloadPath('mobile/$key');
+		
 		#if MODS_ALLOWED
 		if (ignoreMods != true) {
 			var modPath:String = Paths.modFolders(key);
 			if (Paths.exists(modPath)) return modPath;
 		}
 		#end
+	
 
 		return Paths.getPreloadPath(key);	
 	}
@@ -507,7 +526,7 @@ class Paths
 
 	public static function returnGraphic(key:String, ?library:String):Null<FlxGraphic>
 	{
-		var path:String = imagePath(key);
+		var path:String = #if mobile Sys.getCwd() + #end imagePath(key);
 
 		if (currentTrackedAssets.exists(path)) {
 			if (!localTrackedAssets.contains(path)) 
@@ -525,12 +544,12 @@ class Paths
 
 	inline public static function soundPath(path:String, key:String, ?library:String)
 	{
-		return getPath('$path/$key.$SOUND_EXT');
+		return #if mobile Sys.getCwd() + #end getPath('$path/$key.$SOUND_EXT');
 	}
 
 	public static function returnSound(path:String, key:String, ?library:String)
 	{
-		var gottenPath:String = soundPath(path, key, library);
+		var gottenPath:String = #if mobile Sys.getCwd() + #end soundPath(path, key, library);
 	
 		if (currentTrackedSounds.exists(gottenPath)) {
 			if (!localTrackedAssets.contains(gottenPath))
@@ -604,7 +623,7 @@ class Paths
 
 	#if MODS_ALLOWED
 	inline static public function mods(key:String)
-		return 'content/$key';
+		return #if mobile Sys.getCwd() + #end 'content/$key';
 
 	inline static public function getGlobalContent(){
 		return globalContent;
@@ -661,7 +680,7 @@ class Paths
 		contentDirectories.set('', 'content');
 
 		iterateDirectory('content', (folderName) -> {
-			var folderPath = 'content/$folderName';
+			var folderPath = #if mobile Sys.getCwd() + #end 'content/$folderName';
 
 			if (isDirectory(folderPath) && !list.contains(folderName))
 			{
@@ -733,7 +752,7 @@ class Paths
 
 	inline static public function getFolders(dir:String, ?modsOnly:Bool = false){
 		#if !MODS_ALLOWED
-		return [Paths.getPreloadPath('$dir/')];
+		return [#if mobile Sys.getCwd() + #end Paths.getPreloadPath('$dir/')];
 		
 		#else
 		var foldersToCheck:Array<String> = [
