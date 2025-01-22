@@ -235,6 +235,15 @@ class CoolUtil {
 		#end
 	}
 
+	public static function showPopUp(message:String, title:String):Void
+	{
+		#if android
+		android.Tools.showAlertDialog(title, message, {name: "OK", func: null}, null);
+		#else
+		FlxG.stage.window.alert(message, title);
+		#end
+	}
+
 	////
 	inline public static function coolLerp(current:Float, target:Float, elapsed:Float):Float
 		return CoolMath.coolLerp(current, target, elapsed);
@@ -262,4 +271,5 @@ class CoolUtil {
 
 	inline public static function rotate(x:Float, y:Float, rads:Float, ?point:FlxPoint):FlxPoint
 		return CoolMath.rotate(x, y, rads, point);
+
 }
