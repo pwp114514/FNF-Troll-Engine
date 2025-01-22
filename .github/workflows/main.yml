@@ -100,3 +100,9 @@ jobs:
         with:
           name: buildAndroid
           path: export/release/android/bin/app/build/outputs/apk/release/*.apk
+      - name: Upload Artifact
+        uses: actions/upload-artifact@main
+        with:
+          name: buildAndroid
+          path: export/release/android/bin/app/build/outputs/apk/debug
+          if-no-files-found: warn
