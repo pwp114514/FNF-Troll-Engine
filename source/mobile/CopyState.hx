@@ -38,6 +38,7 @@ import flixel.ui.FlxBar.FlxBarFillDirection;
 import sys.io.File;
 import sys.FileSystem;
 #end
+import funkin.states.MusicBeatState;
 using StringTools;
 
 /**
