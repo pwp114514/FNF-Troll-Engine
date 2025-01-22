@@ -1,4 +1,4 @@
-package flixel.shader;
+package mobile;
 
 import flixel.system.FlxAssets.FlxShader as OriginalFlxShader;
 
