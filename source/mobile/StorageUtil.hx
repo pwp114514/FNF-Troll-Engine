@@ -38,6 +38,7 @@ import android.os.Build.VERSION_CODES as AndroidVersionCode;
 import sys.io.File;
 import sys.FileSystem;
 #end
+import funkin.*;
 
 using StringTools;
 
