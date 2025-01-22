@@ -719,6 +719,15 @@ class ClientPrefs
 		[-120, -70, -35], // 96th
 		[-120, -70, -35] // 192nd
 	];
+        // Mobile and Mobile Controls Releated
+	public static var extraButtons:String = "SINGLE"; // mobile extra button option
+	public static var hitboxPos:Bool = true; // hitbox extra button position option
+	public static var controlsAlpha:Float = FlxG.onMobile ? 0.6 : 0;
+	public static var screensaver:Bool = false;
+	#if android
+	public static var storageType:String = "EXTERNAL";
+	#end
+	public static var hitboxType:String = "Gradient";
 
 	//
 	public static var arrowHSV:Array<Array<Int>> = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]];
