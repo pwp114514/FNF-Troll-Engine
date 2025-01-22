@@ -28,6 +28,10 @@ import haxe.CallStack;
 import sys.io.File;
 #end
 
+#if mobile
+import mobile.CopyState;
+#end
+
 #if (windows && cpp)
 import funkin.api.Windows;
 #end
@@ -81,6 +85,13 @@ class Main extends Sprite
 		super();
 
 		////
+		#if mobile
+		#if android
+		StorageUtil.requestPermissions();
+		#end
+		Sys.setCwd(StorageUtil.getStorageDirectory());
+		#end
+			
 		#if sys
 		var args = Sys.args();
 		trace(args);
@@ -157,7 +168,7 @@ class Main extends Sprite
 		
 		StartupState.nextState = nextState;
 
-		var game = new FNFGame(gameWidth, gameHeight, initialState, framerate, framerate, skipSplash, startFullscreen);
+		var game = new FNFGame(gameWidth, gameHeight, #if (mobile && MODS_ALLOWED) !CopyState.checkExistingFiles() ? CopyState : #end initialState, framerate, framerate, skipSplash, startFullscreen);
 		addChild(game);
 
 		FlxG.sound.volume = FlxG.save.data.volume;
@@ -166,7 +177,11 @@ class Main extends Sprite
 
 		fpsVar = new FPS(10, 3, 0xFFFFFF);
 		fpsVar.visible = false;
+		#if !mobile
 		addChild(fpsVar);
+		#else
+		FlxG.game.addChild(fpsVar);
+		#end
 
 		bread = new Bread();
 		bread.visible = false;
@@ -184,10 +199,22 @@ class Main extends Sprite
 			}
 		);
 
+		#if mobile
+		lime.system.System.allowScreenTimeout = ClientPrefs.screensaver;
+		#if android
+		FlxG.android.preventDefaultKeys = [BACK]; 
+		#end
+		#end
+
 		#if cpp
 		// Thank you EliteMasterEric, very cool!
 		untyped __global__.__hxcpp_set_critical_error_handler(onCrash);
 		#end
+		#end
+		#if cpp
+		cpp.NativeGc.enable(true);
+		#elseif hl
+		hl.Gc.enable(true);
 		#end
 	}
 
@@ -295,7 +322,7 @@ class Main extends Sprite
 				saveCallStack(callstack);
 		}
 		#else
-		Application.current.window.alert(callstack, errorName);
+		CoolUtil.showPopUp(callstack, errorName);
 		closeProgram();
 		#end
 	}
