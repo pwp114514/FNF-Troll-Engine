@@ -9,6 +9,7 @@ import openfl.system.Capabilities;
 import lime.app.Application;
 
 import funkin.*;
+import mobile.*;
 import funkin.api.Github;
 import funkin.macros.Sowy;
 import funkin.data.SemanticVersion;
