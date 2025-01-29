@@ -7,8 +7,10 @@
 		},
 		{
 			"name": "lime",
-			"type": "haxelib",
-			"version": "8.1.2"
+			"type": "git",
+			"version": null,
+			"ref": "main",
+			"url": "https://github.com/tchcfhvgd/lime-8.2.2"
 		},
 		{
 			"name": "flixel",
@@ -27,8 +29,10 @@
 		},
 		{
 			"name": "hxcpp",
-			"type": "haxelib",
-			"version": null
+			"type": "git",
+			"version": null,
+			"ref": "master",
+			"url": "https://github.com/mcagabe19-stuff/hxcpp"
 		},
 		{
 			"name": "hxcpp-debug-server",
@@ -61,8 +65,15 @@
 			"name": "linc_luajit",
 			"type": "git",
 			"dir": null,
-			"ref": "master",
-			"url": "https://github.com/riconuts/linc_luajit"
+			"ref": "main",
+			"url": "https://github.com/MobilePorting/linc_luajit-0.6.3"
+		},
+		{
+			"name": "extension-androidtools",
+			"type": "git",
+			"dir": null,
+			"ref": "main",
+			"url": "https://github.com/MAJigsaw77/extension-androidtools"
 		},
 		{
 			"name": "moonchart",
