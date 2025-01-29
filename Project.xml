@@ -33,7 +33,7 @@
     <window if="desktop" orientation="landscape" fullscreen="false" resizable="true" vsync="false" />
 
 	<!--Mobile-specific-->
-    <window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0"
+    <window if="mobile" orientation="landscape" fullscreen="true" width="1280" height="720"
         resizable="false" />
 
 	<!--Switch-specific-->
@@ -59,11 +59,11 @@
 	<!-- TROLL ENGINE CUSTOMIZATION -->
     <define name="USE_EPIC_JUDGEMENT" />
     <define name="HSCRIPT_ALLOWED" />
-    <define name="VIDEOS_ALLOWED" if="cpp" />
-    <define name="MODS_ALLOWED" if="desktop" />
+    <define name="VIDEOS_ALLOWED"/>
+    <define name="MODS_ALLOWED" if="desktop || android" />
     <define name="DISCORD_ALLOWED" if="desktop cpp" unless="display || artifact" />
     <define name="MULTICORE_LOADING" if="native" />
-    <define name="CRASH_HANDLER" if="desktop native" />
+    <define name="CRASH_HANDLER" if="desktop native || android" />
 
 	<!--Remove if you dont want states to be modified with scripts. This only disables extension/overrides and not the HScriptedState class-->
     <define name="SCRIPTABLE_STATES" if="HSCRIPT_ALLOWED" />
@@ -108,7 +108,7 @@
 	<haxelib name="moonchart" version="0.4.0" if="USING_MOONCHART"/>
 
 	<haxelib name="hxdiscord_rpc" if="DISCORD_ALLOWED"/>
-	<haxelib name="hxvlc" version="1.6.1" if="VIDEOS_ALLOWED"/> <!--You can replace with hxcodec if you're stubborn and dont wanna use newer and better libs-->
+	<haxelib name="hxvlc" if="VIDEOS_ALLOWED"/> <!--You can replace with hxcodec if you're stubborn and dont wanna use newer and better libs-->
 	<haxelib name="linc_luajit" if="LUA_ALLOWED"/>
 
 	<section if="HSCRIPT_ALLOWED">
