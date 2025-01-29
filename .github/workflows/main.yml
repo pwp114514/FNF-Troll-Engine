@@ -40,7 +40,7 @@ jobs:
             cache-build-windows
       - name: Install Haxelib
         run: |
-          haxelib install hxcpp > nul --quiet
+          haxelib setup ~/haxelib
           haxelib install hmm --quiet
           haxelib run hmm setup
           haxelib run hmm install
