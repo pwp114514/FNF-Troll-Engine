@@ -1,6 +1,5 @@
 package flixel.graphics.tile;
 
-#if !FLX_DRAW_QUADS
 import flixel.FlxCamera;
 import flixel.graphics.frames.FlxFrame;
 import flixel.graphics.tile.FlxDrawBaseItem.FlxDrawItemType;
