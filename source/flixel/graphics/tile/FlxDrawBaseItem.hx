@@ -5,9 +5,7 @@ import flixel.graphics.frames.FlxFrame;
 import flixel.math.FlxMatrix;
 import openfl.display.BlendMode;
 import openfl.geom.ColorTransform;
-#if !FLX_DRAW_QUADS
 import openfl.display.Tilesheet;
-#end
 import funkin.objects.shaders.NoteColorSwap;
 
 /**
